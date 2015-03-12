@@ -58,6 +58,21 @@ public class InfoDelSys {
         return​ Integer.toString(mDate.get(GregorianCalendar.YEAR)); 
     }
     
+    public int getHour(){
+        
+        mDate = (GregorianCalendar)GregorianCalendar.getInstance();
+        return mDate.get(GregorianCalendar.HOUR_OF_DAY);
+    }
+    public int getMinute(){
+        
+        mDate = (GregorianCalendar)GregorianCalendar.getInstance();
+        return mDate.get(GregorianCalendar.MINUTE);
+    }
+    public int getSecond(){
+        
+        mDate = (GregorianCalendar)GregorianCalendar.getInstance();
+        return mDate.get(GregorianCalendar.SECOND);
+    }
     
     /**
     * @param year para modificar la fecha actual del sistema,

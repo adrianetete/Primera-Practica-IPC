@@ -54,15 +54,21 @@ public class CambiaFechaUI extends javax.swing.JFrame {
         jTextFieldYear = new javax.swing.JTextField();
         jComboBoxDay = new javax.swing.JComboBox();
         jLabelHour = new javax.swing.JLabel();
-        jComboBoxHour = new javax.swing.JComboBox();
         jLabelMin = new javax.swing.JLabel();
-        jComboBoxMin = new javax.swing.JComboBox();
+        jTextFieldHour = new javax.swing.JTextField();
+        jTextFieldMin = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabelSec = new javax.swing.JLabel();
+        jTextFieldSec = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jButtonExit = new javax.swing.JButton();
         jButtonChange = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabelTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cambiador de fecha");
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha y Hora"));
 
@@ -76,43 +82,63 @@ public class CambiaFechaUI extends javax.swing.JFrame {
 
         jComboBoxDay.setModel(new javax.swing.DefaultComboBoxModel(ComboBoxArray.genConsecutiveNumber(1,31)));
 
-        jLabelHour.setText("Hora:");
+        jLabelHour.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelHour.setText("H");
 
-        jComboBoxHour.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabelMin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelMin.setText("M");
 
-        jLabelMin.setText("Min:");
+        jLabel2.setText(":");
 
-        jComboBoxMin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabelSec.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelSec.setText("S");
+
+        jLabel3.setText(":");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelHour)
-                    .addComponent(jComboBoxDay, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelDay, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabelMonth)
-                    .addComponent(jComboBoxMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelMin)
-                    .addComponent(jComboBoxMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelYear)
-                    .addComponent(jTextFieldYear, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxDay, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelDay, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabelMonth)
+                            .addComponent(jComboBoxMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelYear)
+                            .addComponent(jTextFieldYear, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelHour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldHour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5)
+                        .addComponent(jLabel2)
+                        .addGap(5, 5, 5)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelMin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldMin, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel3)
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldSec)
+                            .addComponent(jLabelSec, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelYear, jTextFieldYear});
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jComboBoxDay, jComboBoxHour, jLabelDay, jLabelHour});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jComboBoxDay, jLabelDay});
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jComboBoxMin, jComboBoxMonth, jLabelMin, jLabelMonth});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jComboBoxMonth, jLabelMonth});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,15 +154,28 @@ public class CambiaFechaUI extends javax.swing.JFrame {
                         .addComponent(jComboBoxMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextFieldYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jComboBoxDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelMin)
-                    .addComponent(jLabelHour))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelHour)
+                            .addComponent(jLabelMin))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jTextFieldHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel3))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelSec)
+                        .addGap(6, 6, 6)
+                        .addComponent(jTextFieldSec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jButtonExit.setText("Salir");
@@ -212,12 +251,16 @@ public class CambiaFechaUI extends javax.swing.JFrame {
         jTextFieldYear.setText(value);
     }
     
-    public void setJComboBoxHour(int value){
-        jComboBoxHour.setSelectedIndex(value);
+    public void setJTextFieldHour(int value){
+        jTextFieldHour.setText(String.valueOf(value));
     }
     
-    public void setJComboBoxMin(int value){
-        jComboBoxMin.setSelectedIndex(value);
+    public void setJTextFieldMin(int value){
+        jTextFieldMin.setText(String.valueOf(value));
+    }
+    
+      public void setJTextFieldSec(int value){
+        jTextFieldSec.setText(String.valueOf(value));
     }
 
     
@@ -233,29 +276,25 @@ public class CambiaFechaUI extends javax.swing.JFrame {
         return jTextFieldYear.getText();
     }
     
-    public int getJComboBoxHour(){
-        return jComboBoxHour.getSelectedIndex();
-    }
-    
-    public int getJComboBoxMin(){
-        return jComboBoxMin.getSelectedIndex();
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonChange;
     private javax.swing.JButton jButtonExit;
     private javax.swing.JComboBox jComboBoxDay;
-    private javax.swing.JComboBox jComboBoxHour;
-    private javax.swing.JComboBox jComboBoxMin;
     private javax.swing.JComboBox jComboBoxMonth;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelDay;
     private javax.swing.JLabel jLabelHour;
     private javax.swing.JLabel jLabelMin;
     private javax.swing.JLabel jLabelMonth;
+    private javax.swing.JLabel jLabelSec;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JLabel jLabelYear;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextFieldHour;
+    private javax.swing.JTextField jTextFieldMin;
+    private javax.swing.JTextField jTextFieldSec;
     private javax.swing.JTextField jTextFieldYear;
     // End of variables declaration//GEN-END:variables
 }
