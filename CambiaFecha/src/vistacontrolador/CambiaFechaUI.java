@@ -6,6 +6,7 @@
 package vistacontrolador;
 
 import modelo.InfoDelSys;
+import util.ComboBoxArray;
 
 /**
  *
@@ -72,7 +73,7 @@ public class CambiaFechaUI extends javax.swing.JFrame {
 
         jComboBoxMonth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiemre", "Octubre", "Noviembre", "Diciembre" }));
 
-        jComboBoxDay.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jComboBoxDay.setModel(new javax.swing.DefaultComboBoxModel(ComboBoxArray.genConsecutiveNumber(1,31)));
 
         jLabelHour.setText("Hora:");
 
