@@ -34,6 +34,7 @@ public class CambiaFechaUI extends javax.swing.JFrame {
         setJComboBoxDay(infoDelSys.getDayOverZero());
         setJComboBoxMonth(infoDelSys.getMonth());
         setJTextFieldYear(infoDelSys.getYearString());
+        
     }
 
     /**
