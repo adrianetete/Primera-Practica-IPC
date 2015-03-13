@@ -5,7 +5,7 @@
  */
 package vistacontrolador;
 
-import modelo.InfoDelSys;
+import modelo.Tiempo;
 
 /**
  *
@@ -13,17 +13,19 @@ import modelo.InfoDelSys;
  */
 public class CambiaFechaController implements Runnable {
     
-    private InfoDelSys mInfoDelSys;
+    private Tiempo mTiempoVisible, mTiempoGuardado;
     private CambiaFechaUI mCambiaFechaUI;
     Thread hilo;
     
     public CambiaFechaController(CambiaFechaUI cambiaVistaUI, 
-            InfoDelSys informacionDelSistema){
-         hilo = new Thread(this);
+            Tiempo tiempo){
+        
+        hilo = new Thread(this);
         hilo.start();
         
         this.mCambiaFechaUI = cambiaVistaUI;
-        this.mInfoDelSys = informacionDelSistema;
+        this.mTiempoVisible = tiempo;
+        this.mTiempoGuardado = tiempo.duplicar();
     }
     
     public void changeTime(){
@@ -34,10 +36,28 @@ public class CambiaFechaController implements Runnable {
         System.exit(0);
     }
     
+    public void actualizaMes(){
+        try{
+            mTiempoVisible.setMonth(
+                    mCambiaFechaUI.getJComboBoxMonth()
+            );
+            mCambiaFechaUI.updateComboBoxDayModel(mTiempoVisible);
+        } catch (NumberFormatException e){}
+    }
+    
+    public void actualizaAño(){
+        try{
+            mTiempoVisible.setYear(
+                    Integer.valueOf(mCambiaFechaUI.getJTextFieldYear())
+            );
+            mCambiaFechaUI.updateComboBoxDayModel(mTiempoVisible);
+        } catch (NumberFormatException e){}
+    }
+    
     public void  refreshTime(){
-        mCambiaFechaUI.setJTextFieldHour(mInfoDelSys.getHour());
-        mCambiaFechaUI.setJTextFieldMin(mInfoDelSys.getMinute());
-        mCambiaFechaUI.setJTextFieldSec(mInfoDelSys.getSecond());
+        mCambiaFechaUI.setJTextFieldHour(mTiempoVisible.getHour());
+        mCambiaFechaUI.setJTextFieldMin(mTiempoVisible.getMinute());
+        mCambiaFechaUI.setJTextFieldSec(mTiempoVisible.getSecond());
     }
 
     @Override
@@ -45,7 +65,7 @@ public class CambiaFechaController implements Runnable {
         
         while(true){
             try {
-                 refreshTime();
+                refreshTime();
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
                ex.printStackTrace();

@@ -189,7 +189,7 @@
         <Component class="javax.swing.JComboBox" name="jComboBoxMonth">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&#xa;    new javax.swing.DefaultComboBoxModel(&#xa;        ComboBoxArray.genMonthArray()&#xa;    )&#xa;    " type="code"/>
+              <Connection code="&#xa;    new javax.swing.DefaultComboBoxModel(&#xa;        Tiempo.genMonthArray()&#xa;    )&#xa;    " type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -197,6 +197,9 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldYear">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldYearActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="jComboBoxDay">
         </Component>

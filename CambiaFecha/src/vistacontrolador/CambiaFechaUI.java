@@ -7,16 +7,14 @@ package vistacontrolador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import modelo.InfoDelSys;
-import util.ComboBoxArray;
-
+import modelo.Tiempo;
 /**
  *
  * @author garciparedes
  */
 public class CambiaFechaUI extends javax.swing.JFrame {
  
-    private InfoDelSys mInfoDelSys;
+    private Tiempo mTiempo;
     private CambiaFechaController mCambiaFechaController;
     /**
      * Creates new form CambiaVistaUI
@@ -27,23 +25,22 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     }
     
     private void initValues(){
-        mInfoDelSys =  new InfoDelSys();
-        mCambiaFechaController = new CambiaFechaController(this, mInfoDelSys);
-        showTime(mInfoDelSys);
+        mTiempo =  new Tiempo();
+        mCambiaFechaController = new CambiaFechaController(this, mTiempo);
+        showTime(mTiempo);
     }
     
-    public void showTime(InfoDelSys infoDelSys){
-        updateComboBoxDayModel(infoDelSys.getMonth(), infoDelSys.getYear() );
-        setJComboBoxDay(infoDelSys.getDayOverZero());
-        setJComboBoxMonth(infoDelSys.getMonth());
-        setJTextFieldYear(infoDelSys.getYearString());
-        
+    public void showTime(Tiempo tiempo){
+        updateComboBoxDayModel(tiempo );
+        setJComboBoxDay(tiempo.getDayOverZero());
+        setJComboBoxMonth(tiempo.getMonth());
+        setJTextFieldYear(tiempo.getYearString());
     }
     
-    private void updateComboBoxDayModel(int month, int year){
+    public void updateComboBoxDayModel(Tiempo tiempo){
         jComboBoxDay.setModel(
             new javax.swing.DefaultComboBoxModel(
-                ComboBoxArray.genConsecutiveDayArray(month, year)
+                tiempo.genConsecutiveDayArray()
             )
         );
     }
@@ -91,9 +88,20 @@ public class CambiaFechaUI extends javax.swing.JFrame {
 
         jComboBoxMonth.setModel(
             new javax.swing.DefaultComboBoxModel(
-                ComboBoxArray.genMonthArray()
+                Tiempo.genMonthArray()
             )
         );
+        jComboBoxMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMonthActionPerformed(evt);
+            }
+        });
+
+        jTextFieldYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldYearActionPerformed(evt);
+            }
+        });
 
         jLabelHour.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelHour.setText("H");
@@ -144,6 +152,7 @@ public class CambiaFechaUI extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldSec)
                             .addComponent(jLabelSec, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelYear, jTextFieldYear});
@@ -250,6 +259,14 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
         mCambiaFechaController.exit();
     }//GEN-LAST:event_jButtonExitActionPerformed
+
+    private void jComboBoxMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMonthActionPerformed
+        mCambiaFechaController.actualizaMes();
+    }//GEN-LAST:event_jComboBoxMonthActionPerformed
+
+    private void jTextFieldYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldYearActionPerformed
+        mCambiaFechaController.actualizaAño();
+    }//GEN-LAST:event_jTextFieldYearActionPerformed
     
     public void setJComboBoxDay(int value){
        jComboBoxDay.setSelectedIndex(value);
