@@ -36,7 +36,7 @@ public class CambiaFechaController implements Runnable {
         System.exit(0);
     }
     
-    public void actualizaMes(){
+    public void onMonthModified(){
         try{
             mTiempoVisible.setMonth(
                     mCambiaFechaUI.getJComboBoxMonth()
@@ -45,7 +45,9 @@ public class CambiaFechaController implements Runnable {
         } catch (NumberFormatException e){}
     }
     
-    public void actualizaAño(){
+    public void onYearModified(){
+        //if()
+        System.out.println(mCambiaFechaUI.getJTextFieldYear());
         try{
             mTiempoVisible.setYear(
                     Integer.valueOf(mCambiaFechaUI.getJTextFieldYear())
@@ -55,6 +57,7 @@ public class CambiaFechaController implements Runnable {
     }
     
     public void  refreshTime(){
+        mTiempoVisible.update();
         mCambiaFechaUI.setJTextFieldHour(mTiempoVisible.getHour());
         mCambiaFechaUI.setJTextFieldMin(mTiempoVisible.getMinute());
         mCambiaFechaUI.setJTextFieldSec(mTiempoVisible.getSecond());
@@ -62,7 +65,6 @@ public class CambiaFechaController implements Runnable {
 
     @Override
     public void run() {
-        
         while(true){
             try {
                 refreshTime();

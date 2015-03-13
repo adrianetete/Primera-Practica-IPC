@@ -84,17 +84,12 @@ public class Tiempo {
     }
     
     public int getHour(){
-        mDate = (GregorianCalendar)GregorianCalendar.getInstance();
         return mDate.get(GregorianCalendar.HOUR_OF_DAY);
     }
-    public int getMinute(){
-        
-        mDate = (GregorianCalendar)GregorianCalendar.getInstance();
+    public int getMinute(){        
         return mDate.get(GregorianCalendar.MINUTE);
     }
     public int getSecond(){
-        
-        mDate = (GregorianCalendar)GregorianCalendar.getInstance();
         return mDate.get(GregorianCalendar.SECOND);
     }
     
@@ -134,5 +129,9 @@ public class Tiempo {
 
     public Tiempo duplicar() {
         return new Tiempo(this.mDate);
+    }
+
+    public void update() {
+        mDate.setTimeInMillis(mDate.getTimeInMillis()+1000);
     }
 }

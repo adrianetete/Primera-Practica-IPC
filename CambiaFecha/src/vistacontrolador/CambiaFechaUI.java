@@ -7,6 +7,7 @@ package vistacontrolador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
 import modelo.Tiempo;
 /**
  *
@@ -54,12 +55,13 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
         jPanel1 = new javax.swing.JPanel();
         jLabelDay = new javax.swing.JLabel();
         jLabelMonth = new javax.swing.JLabel();
         jLabelYear = new javax.swing.JLabel();
         jComboBoxMonth = new javax.swing.JComboBox();
-        jTextFieldYear = new javax.swing.JTextField();
         jComboBoxDay = new javax.swing.JComboBox();
         jLabelHour = new javax.swing.JLabel();
         jLabelMin = new javax.swing.JLabel();
@@ -69,10 +71,13 @@ public class CambiaFechaUI extends javax.swing.JFrame {
         jLabelSec = new javax.swing.JLabel();
         jTextFieldSec = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jFormattedTextFieldYear = new javax.swing.JFormattedTextField();
         jButtonExit = new javax.swing.JButton();
         jButtonChange = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabelTitle = new javax.swing.JLabel();
+
+        jScrollPane1.setViewportView(jTree1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cambiador de fecha");
@@ -97,12 +102,6 @@ public class CambiaFechaUI extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldYear.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldYearActionPerformed(evt);
-            }
-        });
-
         jLabelHour.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelHour.setText("H");
 
@@ -115,6 +114,17 @@ public class CambiaFechaUI extends javax.swing.JFrame {
         jLabelSec.setText("S");
 
         jLabel3.setText(":");
+
+        jFormattedTextFieldYear.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFormattedTextFieldYearFocusLost(evt);
+            }
+        });
+        jFormattedTextFieldYear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFormattedTextFieldYearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -134,7 +144,7 @@ public class CambiaFechaUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelYear)
-                            .addComponent(jTextFieldYear, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jFormattedTextFieldYear, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,10 +162,8 @@ public class CambiaFechaUI extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldSec)
                             .addComponent(jLabelSec, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
-
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelYear, jTextFieldYear});
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jComboBoxDay, jLabelDay});
 
@@ -173,9 +181,9 @@ public class CambiaFechaUI extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jComboBoxMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextFieldYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jFormattedTextFieldYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jComboBoxDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -261,12 +269,16 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonExitActionPerformed
 
     private void jComboBoxMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMonthActionPerformed
-        mCambiaFechaController.actualizaMes();
+        mCambiaFechaController.onMonthModified();
     }//GEN-LAST:event_jComboBoxMonthActionPerformed
 
-    private void jTextFieldYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldYearActionPerformed
-        mCambiaFechaController.actualizaAño();
-    }//GEN-LAST:event_jTextFieldYearActionPerformed
+    private void jFormattedTextFieldYearFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormattedTextFieldYearFocusLost
+        mCambiaFechaController.onYearModified();
+    }//GEN-LAST:event_jFormattedTextFieldYearFocusLost
+
+    private void jFormattedTextFieldYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldYearActionPerformed
+        mCambiaFechaController.onYearModified();
+    }//GEN-LAST:event_jFormattedTextFieldYearActionPerformed
     
     public void setJComboBoxDay(int value){
        jComboBoxDay.setSelectedIndex(value);
@@ -277,7 +289,7 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     }
     
     public void setJTextFieldYear(String value){
-        jTextFieldYear.setText(value);
+        jFormattedTextFieldYear.setText(value);
     }
     
     public void setJTextFieldHour(int value){
@@ -302,7 +314,7 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     }
     
     public String getJTextFieldYear(){
-        return jTextFieldYear.getText();
+        return jFormattedTextFieldYear.getText();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -310,6 +322,7 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonExit;
     private javax.swing.JComboBox jComboBoxDay;
     private javax.swing.JComboBox jComboBoxMonth;
+    private javax.swing.JFormattedTextField jFormattedTextFieldYear;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -321,9 +334,10 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JLabel jLabelYear;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextFieldHour;
     private javax.swing.JTextField jTextFieldMin;
     private javax.swing.JTextField jTextFieldSec;
-    private javax.swing.JTextField jTextFieldYear;
+    private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 }
