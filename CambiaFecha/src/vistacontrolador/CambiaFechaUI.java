@@ -5,6 +5,8 @@
  */
 package vistacontrolador;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import modelo.InfoDelSys;
 import util.ComboBoxArray;
 
@@ -21,7 +23,7 @@ public class CambiaFechaUI extends javax.swing.JFrame {
      */
     public CambiaFechaUI() {
         initComponents();
-        initValues();      
+        initValues();
     }
     
     private void initValues(){
@@ -30,11 +32,20 @@ public class CambiaFechaUI extends javax.swing.JFrame {
         showTime(mInfoDelSys);
     }
     
-    private void showTime(InfoDelSys infoDelSys){
+    public void showTime(InfoDelSys infoDelSys){
+        updateComboBoxDayModel(infoDelSys.getMonth(), infoDelSys.getYear() );
         setJComboBoxDay(infoDelSys.getDayOverZero());
         setJComboBoxMonth(infoDelSys.getMonth());
         setJTextFieldYear(infoDelSys.getYearString());
         
+    }
+    
+    private void updateComboBoxDayModel(int month, int year){
+        jComboBoxDay.setModel(
+            new javax.swing.DefaultComboBoxModel(
+                ComboBoxArray.genConsecutiveDayArray(month, year)
+            )
+        );
     }
 
     /**
@@ -78,9 +89,11 @@ public class CambiaFechaUI extends javax.swing.JFrame {
 
         jLabelYear.setText("Año:");
 
-        jComboBoxMonth.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiemre", "Octubre", "Noviembre", "Diciembre" }));
-
-        jComboBoxDay.setModel(new javax.swing.DefaultComboBoxModel(ComboBoxArray.genConsecutiveNumber(1,31)));
+        jComboBoxMonth.setModel(
+            new javax.swing.DefaultComboBoxModel(
+                ComboBoxArray.genMonthArray()
+            )
+        );
 
         jLabelHour.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelHour.setText("H");
@@ -131,7 +144,6 @@ public class CambiaFechaUI extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldSec)
                             .addComponent(jLabelSec, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabelYear, jTextFieldYear});

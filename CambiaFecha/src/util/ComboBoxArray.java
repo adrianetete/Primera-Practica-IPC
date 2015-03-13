@@ -5,6 +5,8 @@
  */
 package util;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -13,7 +15,22 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ComboBoxArray {
     
-    public static String[] genConsecutiveNumber(int ini, int fin){
+    private static final String[] monthArray = {
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre"
+    };
+    
+    private static String[] genConsecutiveNumberArray(int ini, int fin){
         int resultLenght = fin-ini+1;
         AtomicInteger atomic = new AtomicInteger(ini);
         String result[] = new String[resultLenght];
@@ -23,5 +40,13 @@ public class ComboBoxArray {
         return result;
     }
     
-    //public static String (int month)
+    public static String[] genMonthArray(){
+        return monthArray;
+    }
+
+    public static String[] genConsecutiveDayArray(int month, int year){
+        Calendar  gC = new GregorianCalendar(year, month, 1);
+        return genConsecutiveNumberArray(1, gC.getActualMaximum(Calendar.DAY_OF_MONTH));
+    }
+    
 }
