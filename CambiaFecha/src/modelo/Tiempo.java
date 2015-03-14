@@ -93,31 +93,59 @@ public class Tiempo {
         return mDate.get(GregorianCalendar.SECOND);
     }
     
+   
+    public void setDay(int day) throws IllegalArgumentException {
+        if​( day < mDate.getActualMinimum(GregorianCalendar.DAY_OF_MONTH )) 
+            throw​​ new​ IllegalArgumentException(FAIL_DAY + day);
     
-    
+        if​( day > mDate.getActualMaximum(GregorianCalendar.DAY_OF_MONTH )) 
+            throw​​ new​ IllegalArgumentException(FAIL_DAY + day);
+        
+        mDate.set(GregorianCalendar.DAY_OF_MONTH, day);
+    }
 
-    public void setMonth(int month) {
-        if​( month < mDate.getActualMinimum( GregorianCalendar.MONTH )) 
-            throw​​ new​ IllegalArgumentException(FAIL_MONTH);
     
+    public void setMonth(int month) throws IllegalArgumentException{
+        if​( month < mDate.getActualMinimum( GregorianCalendar.MONTH )) 
+            throw​​ new​ IllegalArgumentException(FAIL_MONTH + month);
+        
+        if​( month > mDate.getActualMaximum(GregorianCalendar.MONTH )) 
+            throw​​ new​ IllegalArgumentException(FAIL_MONTH + month);
+    
+        dayRefresh(month, getYear());
         mDate.set(GregorianCalendar.MONTH, month);
     }
+    
+    
+    private void dayRefresh(int month, int year){
+        GregorianCalendar gC = new GregorianCalendar(year,month,1);
+        int maxDays = gC.getActualMaximum(GregorianCalendar.DAY_OF_MONTH );
+
+        System.out.println(maxDays);
+        System.out.println(getDay());
+        System.out.println(gC.getActualMaximum(GregorianCalendar.DAY_OF_MONTH ));
+
+        if (getDay() > maxDays){
+            setDay(gC.getActualMaximum(GregorianCalendar.DAY_OF_MONTH ));
+        }
+    }
+    
     
     /**
     * @param year para modificar la fecha actual del sistema,
     * el año debe ser correcto para el Calendario Gregoriano y debe ser * además ser compatible con el día y mes actual. El caso
     * concreto sería si un año es bisiesto y tenemos la fecha 29 del 2, * no podemos cambiar el año a un año no bisiesto
     */
-    public​​ void​ setYear(int year) {
+    public​​ void​ setYear(int year) throws IllegalArgumentException {
         if​( year < mDate.getActualMinimum( GregorianCalendar.YEAR )) 
-            throw​​ new​ IllegalArgumentException(FAIL_YEAR);
+            throw​​ new​ IllegalArgumentException(FAIL_YEAR + year);
     
+        dayRefresh(getMonth(), year);
         mDate.set(GregorianCalendar.YEAR, year);
     }
     
     public String[] genConsecutiveDayArray(){
         int resultLenght = mDate.getActualMaximum(Calendar.DAY_OF_MONTH);
-        System.out.println(resultLenght);
         AtomicInteger atomic = new AtomicInteger(1);
         String result[] = new String[resultLenght];
         for (int i = 0; i < resultLenght; i++){

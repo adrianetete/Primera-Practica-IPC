@@ -5,9 +5,6 @@
  */
 package vistacontrolador;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.text.NumberFormat;
 import modelo.Tiempo;
 /**
  *
@@ -29,6 +26,11 @@ public class CambiaFechaUI extends javax.swing.JFrame {
         mTiempo =  new Tiempo();
         mCambiaFechaController = new CambiaFechaController(this, mTiempo);
         showTime(mTiempo);
+        showTimeOnLabel(mTiempo);
+    }
+    
+    public void showTimeOnLabel(Tiempo tiempo){
+        
     }
     
     public void showTime(Tiempo tiempo){
@@ -99,6 +101,12 @@ public class CambiaFechaUI extends javax.swing.JFrame {
         jComboBoxMonth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxMonthActionPerformed(evt);
+            }
+        });
+
+        jComboBoxDay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxDayActionPerformed(evt);
             }
         });
 
@@ -279,6 +287,10 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     private void jFormattedTextFieldYearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldYearActionPerformed
         mCambiaFechaController.onYearModified();
     }//GEN-LAST:event_jFormattedTextFieldYearActionPerformed
+
+    private void jComboBoxDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDayActionPerformed
+        mCambiaFechaController.onDayModified();
+    }//GEN-LAST:event_jComboBoxDayActionPerformed
     
     public void setJComboBoxDay(int value){
        jComboBoxDay.setSelectedIndex(value);

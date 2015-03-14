@@ -29,7 +29,8 @@ public class CambiaFechaController implements Runnable {
     }
     
     public void changeTime(){
-        
+        mTiempoGuardado = mTiempoVisible.duplicar();
+        onSavedDateChanged();
     }
 
     public void exit() {
@@ -37,23 +38,19 @@ public class CambiaFechaController implements Runnable {
     }
     
     public void onMonthModified(){
-        try{
-            mTiempoVisible.setMonth(
-                    mCambiaFechaUI.getJComboBoxMonth()
-            );
-            mCambiaFechaUI.updateComboBoxDayModel(mTiempoVisible);
-        } catch (NumberFormatException e){}
+        mTiempoVisible.setMonth(
+                mCambiaFechaUI.getJComboBoxMonth()
+        );
+        mCambiaFechaUI.updateComboBoxDayModel(mTiempoVisible);
+        mCambiaFechaUI.setJComboBoxDay(mTiempoVisible.getDayOverZero());
     }
     
     public void onYearModified(){
-        //if()
-        System.out.println(mCambiaFechaUI.getJTextFieldYear());
-        try{
-            mTiempoVisible.setYear(
-                    Integer.valueOf(mCambiaFechaUI.getJTextFieldYear())
-            );
-            mCambiaFechaUI.updateComboBoxDayModel(mTiempoVisible);
-        } catch (NumberFormatException e){}
+        mTiempoVisible.setYear(
+                Integer.valueOf(mCambiaFechaUI.getJTextFieldYear())
+        );
+        mCambiaFechaUI.updateComboBoxDayModel(mTiempoVisible);
+        mCambiaFechaUI.setJComboBoxDay(mTiempoVisible.getDayOverZero());
     }
     
     public void  refreshTime(){
@@ -73,5 +70,18 @@ public class CambiaFechaController implements Runnable {
                ex.printStackTrace();
             }
         }
+    }
+
+    public void onDayModified() {
+        // Tenemos que sumar 1 para que el día sea correcto
+        // ya que el ComboBox empieza a contar en 0
+        // mientras que GregorianCalendar en 1.
+        mTiempoVisible.setDay(
+                mCambiaFechaUI.getJComboBoxDay()+1
+        );
+    }
+
+    private void onSavedDateChanged() {
+        mCambiaFechaUI.showTimeOnLabel(mTiempoGuardado);
     }
 }
