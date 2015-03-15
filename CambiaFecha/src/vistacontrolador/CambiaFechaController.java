@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vistacontrolador;
 
 import modelo.Tiempo;
@@ -10,11 +5,13 @@ import modelo.Tiempo;
 /**
  *
  * @author garciparedes
+ * 
  */
 public class CambiaFechaController implements Runnable {
     
     private Tiempo mTiempoVisible, mTiempoGuardado;
     private CambiaFechaUI mCambiaFechaUI;
+    private boolean modificando;
     Thread hilo;
     
     public CambiaFechaController(CambiaFechaUI cambiaVistaUI, 
@@ -29,15 +26,23 @@ public class CambiaFechaController implements Runnable {
     }
     
     public void changeTime(){
+        
+        this.modificando = false;
         mTiempoGuardado = mTiempoVisible.duplicar();
         onSavedDateChanged();
     }
 
     public void exit() {
+        
         System.exit(0);
+    }
+    public void setModificando(boolean modi){
+        
+        this.modificando = modi;
     }
     
     public void onMonthModified(){
+        
         mTiempoVisible.setMonth(
                 mCambiaFechaUI.getJComboBoxMonth()
         );
@@ -46,6 +51,7 @@ public class CambiaFechaController implements Runnable {
     }
     
     public void onYearModified(){
+        
         mTiempoVisible.setYear(
                 Integer.valueOf(mCambiaFechaUI.getJTextFieldYear())
         );
@@ -54,18 +60,25 @@ public class CambiaFechaController implements Runnable {
     }
     
     public void  refreshTime(){
+        
         mTiempoVisible.update();
-        mCambiaFechaUI.setJTextFieldHour(mTiempoVisible.getHour());
-        mCambiaFechaUI.setJTextFieldMin(mTiempoVisible.getMinute());
-        mCambiaFechaUI.setJTextFieldSec(mTiempoVisible.getSecond());
+        if(!modificando){
+            
+            mCambiaFechaUI.setJTextFieldHour(mTiempoVisible.getHour());
+            mCambiaFechaUI.setJTextFieldMin(mTiempoVisible.getMinute());
+            mCambiaFechaUI.setJTextFieldSec(mTiempoVisible.getSecond());
+         }
     }
 
     @Override
     public void run() {
+        
         while(true){
             try {
-                refreshTime();
+                
+                refreshTime();      
                 Thread.sleep(1000);
+                
             } catch (InterruptedException ex) {
                ex.printStackTrace();
             }

@@ -116,10 +116,28 @@ public class CambiaFechaUI extends javax.swing.JFrame {
         jLabelMin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelMin.setText("M");
 
+        jTextFieldHour.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldHourFocusGained(evt);
+            }
+        });
+
+        jTextFieldMin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldMinFocusGained(evt);
+            }
+        });
+
         jLabel2.setText(":");
 
         jLabelSec.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelSec.setText("S");
+
+        jTextFieldSec.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldSecFocusGained(evt);
+            }
+        });
 
         jLabel3.setText(":");
 
@@ -291,6 +309,18 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     private void jComboBoxDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxDayActionPerformed
         mCambiaFechaController.onDayModified();
     }//GEN-LAST:event_jComboBoxDayActionPerformed
+
+    private void jTextFieldHourFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldHourFocusGained
+        mCambiaFechaController.setModificando(true);
+    }//GEN-LAST:event_jTextFieldHourFocusGained
+
+    private void jTextFieldMinFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldMinFocusGained
+        mCambiaFechaController.setModificando(true);
+    }//GEN-LAST:event_jTextFieldMinFocusGained
+
+    private void jTextFieldSecFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldSecFocusGained
+        mCambiaFechaController.setModificando(true);
+    }//GEN-LAST:event_jTextFieldSecFocusGained
     
     public void setJComboBoxDay(int value){
        jComboBoxDay.setSelectedIndex(value);
