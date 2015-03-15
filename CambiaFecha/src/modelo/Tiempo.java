@@ -98,6 +98,18 @@ public class Tiempo {
         return mDate.get(GregorianCalendar.SECOND);
     }
     
+    
+    
+
+    public void setHour(int value) {
+        mDate.set(Calendar.HOUR_OF_DAY, value);
+    }
+    public void setSec(int value) {
+        mDate.set(Calendar.SECOND, value);
+    }
+    public void setMin(int value) {
+        mDate.set(Calendar.MINUTE, value);
+    }
     /**
      * Cambia el dia del sistema
      * 
@@ -140,10 +152,6 @@ public class Tiempo {
     private void dayRefresh(int month, int year){
         GregorianCalendar gC = new GregorianCalendar(year,month,1);
         int maxDays = gC.getActualMaximum(GregorianCalendar.DAY_OF_MONTH );
-
-        System.out.println(maxDays);
-        System.out.println(getDay());
-        System.out.println(gC.getActualMaximum(GregorianCalendar.DAY_OF_MONTH ));
 
         if (getDay() > maxDays){
             setDay(gC.getActualMaximum(GregorianCalendar.DAY_OF_MONTH ));
@@ -191,5 +199,41 @@ public class Tiempo {
      */
     public void update() {
         mDate.setTimeInMillis(mDate.getTimeInMillis()+1000);
+    }
+
+    
+    public String getMinuteString() {
+        return Integer.toString(getMinute());
+    }
+
+    
+    public String getHourString() {
+        return Integer.toString(getHour());
+    }
+
+    
+    public String getSecondString() {
+        return Integer.toString(getSecond());
+    }
+    
+    
+    @Override
+    public String toString(){
+        StringBuilder result = new StringBuilder();
+        result.append(getHourString());
+        result.append(":");
+        result.append(getMinuteString());
+        result.append(":");
+        result.append(getSecondString());
+        
+        result.append("     ");
+        
+        result.append(getDay());
+        result.append(" de ");
+        result.append(monthArray[getMonth()]);
+        result.append(" de ");
+        result.append(getYear());
+        
+        return result.toString();
     }
 }

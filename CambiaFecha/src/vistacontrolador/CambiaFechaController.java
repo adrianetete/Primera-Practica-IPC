@@ -6,6 +6,8 @@
  */
 package vistacontrolador;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Tiempo;
 
 public class CambiaFechaController implements Runnable {
@@ -52,6 +54,28 @@ public class CambiaFechaController implements Runnable {
     public void setModificando(boolean modi){
         
         this.modificando = modi;
+            }
+    
+    public void onHourModified(){
+        mTiempoVisible.setHour(
+                Integer.valueOf(mCambiaFechaUI.getJComboBoxHour())
+        );
+        setModificando(false);
+
+    }
+    
+    public void onMinModified(){
+       mTiempoVisible.setMin(
+                Integer.valueOf(mCambiaFechaUI.getJComboBoxMin())
+        );
+        setModificando(false);
+    }
+    
+    public void onSecModified(){
+        mTiempoVisible.setSec(
+                Integer.valueOf(mCambiaFechaUI.getJComboBoxSec())
+        );
+        setModificando(false);
     }
     
     /**
@@ -83,13 +107,14 @@ public class CambiaFechaController implements Runnable {
      */
     public void  refreshTime(){
         
-        mTiempoVisible.update();
         if(!modificando){
             
-            mCambiaFechaUI.setJTextFieldHour(mTiempoVisible.getHour());
-            mCambiaFechaUI.setJTextFieldMin(mTiempoVisible.getMinute());
-            mCambiaFechaUI.setJTextFieldSec(mTiempoVisible.getSecond());
-         }
+            mTiempoVisible.update();
+            mCambiaFechaUI.setJTextFieldHour(mTiempoVisible.getHourString());
+            mCambiaFechaUI.setJTextFieldMin(mTiempoVisible.getMinuteString());
+            mCambiaFechaUI.setJTextFieldSec(mTiempoVisible.getSecondString());
+
+        }
     }
 
     @Override

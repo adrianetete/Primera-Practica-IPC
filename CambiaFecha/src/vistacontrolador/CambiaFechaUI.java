@@ -28,7 +28,7 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     }
     
     public void showTimeOnLabel(Tiempo tiempo){
-        
+        jLabelTime.setText(tiempo.toString());
     }
     
     public void showTime(Tiempo tiempo){
@@ -74,7 +74,7 @@ public class CambiaFechaUI extends javax.swing.JFrame {
         jFormattedTextFieldYear = new javax.swing.JFormattedTextField();
         jButtonExit = new javax.swing.JButton();
         jButtonChange = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelTime = new javax.swing.JLabel();
         jLabelTitle = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jTree1);
@@ -118,11 +118,17 @@ public class CambiaFechaUI extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldHourFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldHourFocusLost(evt);
+            }
         });
 
         jTextFieldMin.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldMinFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldMinFocusLost(evt);
             }
         });
 
@@ -134,6 +140,9 @@ public class CambiaFechaUI extends javax.swing.JFrame {
         jTextFieldSec.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextFieldSecFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldSecFocusLost(evt);
             }
         });
 
@@ -245,7 +254,7 @@ public class CambiaFechaUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("jLabel1");
+        jLabelTime.setText("jLabel1");
 
         jLabelTitle.setText("Fecha y Hora del Sistema");
 
@@ -257,7 +266,7 @@ public class CambiaFechaUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonChange)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -277,7 +286,7 @@ public class CambiaFechaUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonChange)
                     .addComponent(jButtonExit)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabelTime))
                 .addContainerGap())
         );
 
@@ -319,6 +328,18 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     private void jTextFieldSecFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldSecFocusGained
         mCambiaFechaController.setModificando(true);
     }//GEN-LAST:event_jTextFieldSecFocusGained
+
+    private void jTextFieldMinFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldMinFocusLost
+        mCambiaFechaController.onMinModified();
+    }//GEN-LAST:event_jTextFieldMinFocusLost
+
+    private void jTextFieldHourFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldHourFocusLost
+        mCambiaFechaController.onHourModified();
+    }//GEN-LAST:event_jTextFieldHourFocusLost
+
+    private void jTextFieldSecFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldSecFocusLost
+        mCambiaFechaController.onSecModified();
+    }//GEN-LAST:event_jTextFieldSecFocusLost
     
     public void setJComboBoxDay(int value){
        jComboBoxDay.setSelectedIndex(value);
@@ -332,19 +353,29 @@ public class CambiaFechaUI extends javax.swing.JFrame {
         jFormattedTextFieldYear.setText(value);
     }
     
-    public void setJTextFieldHour(int value){
-        jTextFieldHour.setText(String.valueOf(value));
+    public void setJTextFieldHour(String value){
+        jTextFieldHour.setText(value);
     }
     
-    public void setJTextFieldMin(int value){
-        jTextFieldMin.setText(String.valueOf(value));
+    public void setJTextFieldMin(String value){
+        jTextFieldMin.setText(value);
     }
     
-      public void setJTextFieldSec(int value){
-        jTextFieldSec.setText(String.valueOf(value));
+      public void setJTextFieldSec(String value){
+        jTextFieldSec.setText(value);
     }
 
-    
+    public String getJComboBoxSec() {
+        return jTextFieldSec.getText();
+    }
+      
+    public  String getJComboBoxMin() {
+        return jTextFieldMin.getText();
+    }
+      
+    public  String getJComboBoxHour() {
+        return jTextFieldHour.getText();
+    }
     public int getJComboBoxDay(){
         return jComboBoxDay.getSelectedIndex();
     }
@@ -363,7 +394,6 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBoxDay;
     private javax.swing.JComboBox jComboBoxMonth;
     private javax.swing.JFormattedTextField jFormattedTextFieldYear;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelDay;
@@ -371,6 +401,7 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelMin;
     private javax.swing.JLabel jLabelMonth;
     private javax.swing.JLabel jLabelSec;
+    private javax.swing.JLabel jLabelTime;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JLabel jLabelYear;
     private javax.swing.JPanel jPanel1;
@@ -380,4 +411,6 @@ public class CambiaFechaUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldSec;
     private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
+
+    
 }
