@@ -6,8 +6,6 @@
  */
 package vistacontrolador;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.Tiempo;
 
 public class CambiaFechaController implements Runnable {

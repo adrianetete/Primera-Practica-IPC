@@ -98,16 +98,37 @@ public class Tiempo {
         return mDate.get(GregorianCalendar.SECOND);
     }
     
-    
-    
+   
 
-    public void setHour(int value) {
+    public void setHour(int value) throws IllegalArgumentException{
+        if​( value < mDate.getActualMinimum(GregorianCalendar.HOUR_OF_DAY )) 
+            throw​​ new​ IllegalArgumentException(FAIL_DAY + value);
+    
+        if​( value > mDate.getActualMaximum(GregorianCalendar.HOUR_OF_DAY )) 
+            throw​​ new​ IllegalArgumentException(FAIL_DAY + value);
+        
         mDate.set(Calendar.HOUR_OF_DAY, value);
     }
-    public void setSec(int value) {
+    
+    
+    public void setSec(int value) throws IllegalArgumentException{
+        if​( value < mDate.getActualMinimum(GregorianCalendar.SECOND )) 
+            throw​​ new​ IllegalArgumentException(FAIL_DAY + value);
+    
+        if​( value > mDate.getActualMaximum(GregorianCalendar.SECOND )) 
+            throw​​ new​ IllegalArgumentException(FAIL_DAY + value);
+        
         mDate.set(Calendar.SECOND, value);
     }
-    public void setMin(int value) {
+    
+    
+    public void setMin(int value) throws IllegalArgumentException{
+        if​( value < mDate.getActualMinimum(GregorianCalendar.MINUTE )) 
+            throw​​ new​ IllegalArgumentException(FAIL_MIN + value);
+    
+        if​( value > mDate.getActualMaximum(GregorianCalendar.MINUTE )) 
+            throw​​ new​ IllegalArgumentException(FAIL_MIN + value);
+        
         mDate.set(Calendar.MINUTE, value);
     }
     /**
