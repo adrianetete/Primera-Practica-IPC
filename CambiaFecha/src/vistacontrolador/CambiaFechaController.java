@@ -12,18 +12,19 @@ public class CambiaFechaController implements Runnable {
     
     private Tiempo mTiempoVisible, mTiempoGuardado;
     private CambiaFechaUI mCambiaFechaUI;
-    private boolean modificando;
+    private boolean modificando, pause;
     Thread hilo;
     
     public CambiaFechaController(CambiaFechaUI cambiaVistaUI, 
             Tiempo tiempo){
         
-        hilo = new Thread(this);
-        hilo.start();
-        
+        this.pause = false;
         this.mCambiaFechaUI = cambiaVistaUI;
         this.mTiempoVisible = tiempo;
         this.mTiempoGuardado = tiempo.duplicar();
+        
+        hilo = new Thread(this);
+        hilo.start();
     }
     
     /**
@@ -49,31 +50,30 @@ public class CambiaFechaController implements Runnable {
      * 
      * @param modi 
      */
-    public void setModificando(boolean modi){
-        
-        this.modificando = modi;
-            }
+    public void setModificando(){
+        this.modificando = true;
+    }
     
     public void onHourModified(){
         mTiempoVisible.setHour(
-                Integer.valueOf(mCambiaFechaUI.getJComboBoxHour())
+                Integer.valueOf(mCambiaFechaUI.getJTextFieldHour())
         );
-        setModificando(false);
+        modificando = (false);
 
     }
     
     public void onMinModified(){
        mTiempoVisible.setMin(
-                Integer.valueOf(mCambiaFechaUI.getJComboBoxMin())
+                Integer.valueOf(mCambiaFechaUI.getJTextFieldMin())
         );
-        setModificando(false);
+        modificando = (false);
     }
     
     public void onSecModified(){
         mTiempoVisible.setSec(
-                Integer.valueOf(mCambiaFechaUI.getJComboBoxSec())
+                Integer.valueOf(mCambiaFechaUI.getJTextFieldSec())
         );
-        setModificando(false);
+        modificando = (false);
     }
     
     /**
@@ -105,7 +105,7 @@ public class CambiaFechaController implements Runnable {
      */
     public void  refreshTime(){
         
-        if(!modificando){
+        if(!modificando && !pause){
             
             mTiempoVisible.update();
             mCambiaFechaUI.setJTextFieldHour(mTiempoVisible.getHourString());
@@ -142,5 +142,9 @@ public class CambiaFechaController implements Runnable {
 
     private void onSavedDateChanged() {
         mCambiaFechaUI.showTimeOnLabel(mTiempoGuardado);
+    }
+
+    void pauseClock() {
+        pause = !pause;
     }
 }
