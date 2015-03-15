@@ -63,10 +63,10 @@ public class CambiaFechaController implements Runnable {
             hour =  Integer.valueOf(mCambiaFechaUI.getJTextFieldHour());            
             mTiempoVisible.setHour(hour);
             
-        }catch(Error e){
-            
-            e.printStackTrace();
-            mCambiaFechaUI.setJTextFieldHour(String.valueOf(hour));
+        }catch(NumberFormatException e){
+            mCambiaFechaUI.setJTextFieldHour(String.valueOf(mTiempoVisible.getHour()));
+        }catch(IllegalArgumentException e){
+            mCambiaFechaUI.setJTextFieldHour(String.valueOf(mTiempoVisible.getHour()));
         }
         
  
@@ -75,34 +75,27 @@ public class CambiaFechaController implements Runnable {
     
     public void onMinModified(){
         
-        int min = mTiempoVisible.getMinute();
         
         try{
+            mTiempoVisible.setMin(Integer.valueOf(mCambiaFechaUI.getJTextFieldMin()));
             
-            min =  Integer.valueOf(mCambiaFechaUI.getJTextFieldMin());            
-            mTiempoVisible.setMin(min);
-            
-        }catch(Error e){
-            
-            e.printStackTrace();
-            mCambiaFechaUI.setJTextFieldMin(String.valueOf(min));
+        }catch(NumberFormatException e){
+            mCambiaFechaUI.setJTextFieldMin(String.valueOf(mTiempoVisible.getMinute()));
+        }catch(IllegalArgumentException e){
+            mCambiaFechaUI.setJTextFieldMin(String.valueOf(mTiempoVisible.getMinute()));
         }
         modificando = (false);
     }
     
     public void onSecModified(){
-        
-       int sec = mTiempoVisible.getSecond();
-        
+                
         try{
+            mTiempoVisible.setSec(Integer.valueOf(mCambiaFechaUI.getJTextFieldSec()));
             
-            sec =  Integer.valueOf(mCambiaFechaUI.getJTextFieldSec());            
-            mTiempoVisible.setSec(sec);
-            
-        }catch(Error e){
-            
-            e.printStackTrace();
-            mCambiaFechaUI.setJTextFieldSec(String.valueOf(sec));
+        }catch(NumberFormatException e){
+            mCambiaFechaUI.setJTextFieldSec(String.valueOf(mTiempoVisible.getSecond()));
+        }catch(IllegalArgumentException e){
+            mCambiaFechaUI.setJTextFieldSec(String.valueOf(mTiempoVisible.getSecond()));
         }
         
         modificando = (false);
@@ -124,15 +117,13 @@ public class CambiaFechaController implements Runnable {
      * 
      */
     public void onYearModified(){
-        
-        int year = mTiempoVisible.getYear();
-        
+                
         try{
-            year = Integer.valueOf(mCambiaFechaUI.getJTextFieldYear());
-            mTiempoVisible.setYear(year);
+            mTiempoVisible.setYear(Integer.valueOf(mCambiaFechaUI.getJTextFieldYear()));
         }catch(NumberFormatException a){
-            
-            mCambiaFechaUI.setJTextFieldYear(String.valueOf(year));
+            mCambiaFechaUI.setJTextFieldYear(String.valueOf(mTiempoVisible.getYear()));
+        }catch(IllegalArgumentException a){
+            mCambiaFechaUI.setJTextFieldYear(String.valueOf(mTiempoVisible.getYear()));
         }
             
         mCambiaFechaUI.updateComboBoxDayModel(mTiempoVisible);
