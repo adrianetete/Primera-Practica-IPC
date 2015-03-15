@@ -55,24 +55,56 @@ public class CambiaFechaController implements Runnable {
     }
     
     public void onHourModified(){
-        mTiempoVisible.setHour(
-                Integer.valueOf(mCambiaFechaUI.getJTextFieldHour())
-        );
+        
+        int hour = mTiempoVisible.getHour();
+        
+        try{
+            
+            hour =  Integer.valueOf(mCambiaFechaUI.getJTextFieldHour());            
+            mTiempoVisible.setHour(hour);
+            
+        }catch(Error e){
+            
+            e.printStackTrace();
+            mCambiaFechaUI.setJTextFieldHour(String.valueOf(hour));
+        }
+        
+ 
         modificando = (false);
-
     }
     
     public void onMinModified(){
-       mTiempoVisible.setMin(
-                Integer.valueOf(mCambiaFechaUI.getJTextFieldMin())
-        );
+        
+        int min = mTiempoVisible.getMinute();
+        
+        try{
+            
+            min =  Integer.valueOf(mCambiaFechaUI.getJTextFieldMin());            
+            mTiempoVisible.setMin(min);
+            
+        }catch(Error e){
+            
+            e.printStackTrace();
+            mCambiaFechaUI.setJTextFieldMin(String.valueOf(min));
+        }
         modificando = (false);
     }
     
     public void onSecModified(){
-        mTiempoVisible.setSec(
-                Integer.valueOf(mCambiaFechaUI.getJTextFieldSec())
-        );
+        
+       int sec = mTiempoVisible.getSecond();
+        
+        try{
+            
+            sec =  Integer.valueOf(mCambiaFechaUI.getJTextFieldSec());            
+            mTiempoVisible.setSec(sec);
+            
+        }catch(Error e){
+            
+            e.printStackTrace();
+            mCambiaFechaUI.setJTextFieldSec(String.valueOf(sec));
+        }
+        
         modificando = (false);
     }
     
@@ -93,9 +125,16 @@ public class CambiaFechaController implements Runnable {
      */
     public void onYearModified(){
         
-        mTiempoVisible.setYear(
-                Integer.valueOf(mCambiaFechaUI.getJTextFieldYear())
-        );
+        int year = mTiempoVisible.getYear();
+        
+        try{
+            year = Integer.valueOf(mCambiaFechaUI.getJTextFieldYear());
+            mTiempoVisible.setYear(year);
+        }catch(NumberFormatException a){
+            
+            mCambiaFechaUI.setJTextFieldYear(String.valueOf(year));
+        }
+            
         mCambiaFechaUI.updateComboBoxDayModel(mTiempoVisible);
         mCambiaFechaUI.setJComboBoxDay(mTiempoVisible.getDayOverZero());
     }
