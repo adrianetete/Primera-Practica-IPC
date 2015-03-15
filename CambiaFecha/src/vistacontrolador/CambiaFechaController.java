@@ -1,12 +1,13 @@
+/**
+ * 
+ * @author Sergio Garcia Prado
+ * @author Adrian Calvo Rojo
+ * 
+ */
 package vistacontrolador;
 
 import modelo.Tiempo;
 
-/**
- *
- * @author garciparedes
- * 
- */
 public class CambiaFechaController implements Runnable {
     
     private Tiempo mTiempoVisible, mTiempoGuardado;
@@ -25,6 +26,9 @@ public class CambiaFechaController implements Runnable {
         this.mTiempoGuardado = tiempo.duplicar();
     }
     
+    /**
+     * Cambia el tiempo del sistema, por el que ha proporcionado el usuario.
+     */
     public void changeTime(){
         
         this.modificando = false;
@@ -32,15 +36,27 @@ public class CambiaFechaController implements Runnable {
         onSavedDateChanged();
     }
 
+    /**
+     * Termina el porgama.
+     */
     public void exit() {
         
         System.exit(0);
     }
+    /**
+     * Hace saber al metodo que refresca la hora que se está modificando 
+     * cualquiera de los campos: hora, minutos o segundos.
+     * 
+     * @param modi 
+     */
     public void setModificando(boolean modi){
         
         this.modificando = modi;
     }
     
+    /**
+     * 
+     */
     public void onMonthModified(){
         
         mTiempoVisible.setMonth(
@@ -50,6 +66,9 @@ public class CambiaFechaController implements Runnable {
         mCambiaFechaUI.setJComboBoxDay(mTiempoVisible.getDayOverZero());
     }
     
+    /**
+     * 
+     */
     public void onYearModified(){
         
         mTiempoVisible.setYear(
@@ -59,6 +78,9 @@ public class CambiaFechaController implements Runnable {
         mCambiaFechaUI.setJComboBoxDay(mTiempoVisible.getDayOverZero());
     }
     
+    /**
+     * 
+     */
     public void  refreshTime(){
         
         mTiempoVisible.update();
@@ -86,9 +108,10 @@ public class CambiaFechaController implements Runnable {
     }
 
     public void onDayModified() {
-        // Tenemos que sumar 1 para que el día sea correcto
-        // ya que el ComboBox empieza a contar en 0
-        // mientras que GregorianCalendar en 1.
+        
+        /* Tenemos que sumar 1 para que el día sea correcto
+         * ya que el ComboBox empieza a contar en 0
+         * mientras que GregorianCalendar en 1. */
         mTiempoVisible.setDay(
                 mCambiaFechaUI.getJComboBoxDay()+1
         );

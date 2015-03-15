@@ -1,15 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
+ * @author Sergio Garcia Prado
+ * @author Adrian Calvo Rojo
+ * 
  */
 package vistacontrolador;
 
 import modelo.Tiempo;
-/**
- *
- * @author garciparedes
- */
+
 public class CambiaFechaUI extends javax.swing.JFrame {
  
     private Tiempo mTiempo;
